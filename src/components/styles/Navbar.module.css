@@ -1,0 +1,57 @@
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 3rem 5rem;
+  color: white;
+  font-size: 30px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand .logo {
+  margin-right: 1rem;
+}
+
+.brand .name {
+  color: white;
+  font-size: 1.5rem; /* Example font size */
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.right .howItWorks {
+  font-size: 18px;
+  margin-right: 2rem; /* Adjust as needed */
+}
+
+.right .auth .login {
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  padding: .75rem;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 768px){
+  .navbarContainer{
+    padding: 2rem 2rem;
+  }
+  .brand .name {
+    font-size: 1.2rem; /* Example font size */
+  }
+  .right .howItWorks {
+    display: none;
+  }
+  .right .auth .login {
+    padding: .5rem;
+    font-size: 16px;
+  }
+}
