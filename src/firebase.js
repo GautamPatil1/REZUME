@@ -30,7 +30,7 @@ function checkLink(link) {
         resolve(false);
       }
     }).catch((error) => {
-      console.error("Error checking link:", error);
+      console.error("Error checking links:", error);
       reject(error);
     });
   });
