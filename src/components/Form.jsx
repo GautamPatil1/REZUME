@@ -1,49 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles/Form.module.css";
 import { getStorage, ref, uploadBytes, getMetadata } from "firebase/storage";
-import { writeUserData } from "../firebase"; // Import ref as dbRef and set functions
+import { writeUserData, checkLink } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
-export default function Form() {
+const Form = () => {
   const navigate = useNavigate();
-  // Function to handle form submission
+  const [linkStatus, setLinkStatus] = useState(""); // State to store link status
+
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault();
 
     const fileInput = document.getElementById("formFile");
-    const file = fileInput.files[0]; // Get the selected file
+    const file = fileInput.files[0];
 
-    // Get specific URL from the formcontrol
     const name = event.target.elements.name.value;
     const url = event.target.elements.url.value;
 
-    // Check if a file is selected
     if (file) {
-      // Get a reference to the storage service
-      const storage = getStorage();
-
-      // Create a storage reference from our storage service
-      const storageRef = ref(storage);
-
-      // Reference to the file in Firebase Storage
-      const resumeRef = ref(storageRef, file.name);
-
       try {
-        // Upload the file to Firebase Storage
-        const snapshot = await uploadBytes(resumeRef, file);
-        writeUserData(name, url, `https://firebasestorage.googleapis.com/v0/b/rezume-a5269.appspot.com/o/${file.name}?alt=media`)
-        getMetadata(resumeRef)
-          .then((metadata) => {
-            console.log("File metadata:", metadata);
-            console.log(metadata.name);
-          })
-          .catch((error) => {
-            // Uh-oh, an error occurred!
-          });
-        console.log("File uploaded and user data saved successfully!");
-        navigate(`/${name}`)
+        const urlExists = await checkLink(url);
+
+        if (urlExists) {
+          setLinkStatus("URL already in use!");
+        } else {
+          setLinkStatus(""); // Clear link status if URL is not in use
+
+          const storage = getStorage();
+          const storageRef = ref(storage);
+          const resumeRef = ref(storageRef, file.name);
+
+          const snapshot = await uploadBytes(resumeRef, file);
+
+          writeUserData(
+            name,
+            url,
+            `https://firebasestorage.googleapis.com/v0/b/rezume-a5269.appspot.com/o/${file.name}?alt=media`
+          );
+
+          const metadata = await getMetadata(resumeRef);
+          console.log("File metadata:", metadata);
+          console.log(metadata.name);
+
+          console.log("File uploaded and user data saved successfully!");
+          navigate(`/${name}`);
+        }
       } catch (error) {
-        console.error("Error uploading file:", error);
+        console.error("Error handling form submission:", error);
       }
     } else {
       console.log("No file selected.");
@@ -54,39 +57,38 @@ export default function Form() {
     <div>
       <h1>Form</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* Form fields */}
         <div className="mb-3">
-          <label htmlFor="basic-url" className="form-label">
+          <label htmlFor="name" className="form-label">
             Name
           </label>
           <input
             type="text"
             className="form-control"
             id="name"
-            aria-describedby="basic-addon3 basic-addon4"
             required
           />
         </div>
 
-        <div class="mb-3">
-          <label for="basic-url" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="url" className="form-label">
             Your specific URL
           </label>
-          <div class="input-group">
-            <span class="input-group-text" id="basic-addon3">
+          <div className="input-group">
+            <span className="input-group-text" id="basic-addon3">
               https://rezume.link/
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="url"
-              aria-describedby="basic-addon3 basic-addon4"
               required
             />
           </div>
+          {linkStatus && (
+            <div className="text-danger">{linkStatus}</div>
+          )}
         </div>
 
-        {/* File input */}
         <div className="mb-3">
           <label htmlFor="formFile" className="form-label">
             Upload Your Resume/CV
@@ -100,11 +102,12 @@ export default function Form() {
           />
         </div>
 
-        {/* Submit button */}
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>
     </div>
   );
-}
+};
+
+export default Form;

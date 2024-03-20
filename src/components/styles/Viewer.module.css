@@ -1,5 +1,5 @@
-.pdf embed{
+.pdf iframe{
     height: 700px;
     width: 500px;
-    background-color: red;
+    background-color: blue;
 }

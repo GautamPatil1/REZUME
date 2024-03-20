@@ -29,7 +29,7 @@ export default function Viewer() {
     <div>
       <h1>{userData.name}</h1>
       <div className={styles.pdf}>
-        <embed
+        <iframe
           className={styles.pdf}
           src={userData.file}
         />

@@ -11,7 +11,7 @@ export default function Hero() {
         </div>
         <div className={styles.buttons}>
             <div className={styles.getStarted}>
-                <a href="#">Get Started</a>
+                <a href="/dashboard">Get Started</a>
             </div>
         </div>
       </div>

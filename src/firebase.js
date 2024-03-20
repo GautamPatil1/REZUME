@@ -18,6 +18,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+function checkLink(link) {
+  const db = getDatabase();
+  const resultRef = ref(db, link);
+  
+  return new Promise((resolve, reject) => {
+    get(resultRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    }).catch((error) => {
+      console.error("Error checking link:", error);
+      reject(error);
+    });
+  });
+}
+
 function writeUserData(name, link, file) {
   const db = getDatabase();
   set(ref(db, link), {
@@ -41,4 +59,4 @@ async function readUserData(link) {
   });
 }
 
-export { app, writeUserData, readUserData }; // Export app, database, ref (renamed from dbRef), and set functions
+export { app, writeUserData, readUserData, checkLink }; // Export app, database, ref (renamed from dbRef), and set functions
