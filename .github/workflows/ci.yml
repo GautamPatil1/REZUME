@@ -19,13 +19,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t gautampatil1/credify-server:latest .
+        run: docker build -t gautampatil1/rezume:latest .
 
       - name: Push Docker image to Docker Hub
-        run: docker push gautampatil1/credify-server:latest
+        run: docker push gautampatil1/rezume:latest
 
       - name: Push Docker image to ghcr.io
         run: |
           docker login --username gautampatil1 --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --tag ghcr.io/gautampatil1/credify-server:latest
-          docker push ghcr.io/gautampatil1/credify-server:latest
+          docker build . --tag ghcr.io/gautampatil1/rezume:latest
+          docker push ghcr.io/gautampatil1/rezume-server:latest
