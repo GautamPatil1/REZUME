@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const navigate = useNavigate();
-  const [linkStatus, setLinkStatus] = useState(""); // State to store link status
+  const [linkStatus, setLinkStatus] = useState("");
+  const [loading, setLoading] = useState(false); // State to track loading
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,13 +20,15 @@ const Form = () => {
 
     if (file) {
       try {
+        setLoading(true); // Set loading state to true
+
         const urlExists = await checkLink(url);
 
         if (urlExists) {
           setLinkStatus("URL already in use!");
+          setLoading(false); // Reset loading state
         } else {
-          setLinkStatus(""); // Clear link status if URL is not in use
-
+          setLinkStatus("");
           const storage = getStorage();
           const storageRef = ref(storage);
           const resumeRef = ref(storageRef, file.name);
@@ -43,10 +46,12 @@ const Form = () => {
           console.log(metadata.name);
 
           console.log("File uploaded and user data saved successfully!");
-          navigate(`/${name}`);
+          navigate(`/${url}`);
         }
       } catch (error) {
         console.error("Error handling form submission:", error);
+      } finally {
+        setLoading(false); // Reset loading state regardless of success or failure
       }
     } else {
       console.log("No file selected.");
@@ -102,8 +107,8 @@ const Form = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <button type="submit" className="btn btn-primary" disabled={loading}>
+          {loading ? "Loading..." : "Submit"}
         </button>
       </form>
     </div>
