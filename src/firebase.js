@@ -1,17 +1,16 @@
-// firebase.js
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, onValue } from "firebase/database";
 
 // Your Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA2zggT-V6eWeAZmRjMGklxJ7CKGzUOfvY",
-  authDomain: "rezume-a5269.firebaseapp.com",
-  projectId: "rezume-a5269",
-  storageBucket: "gs://rezume-a5269.appspot.com", // Fix duplicate key
-  messagingSenderId: "60826985488",
-  appId: "1:60826985488:web:2637058eb25c03f5d39695",
-  measurementId: "G-RVFTFZWE97",
-  databaseURL: "https://rezume-a5269-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
 };
 
 // Initialize Firebase
@@ -59,4 +58,4 @@ async function readUserData(link) {
   });
 }
 
-export { app, writeUserData, readUserData, checkLink }; // Export app, database, ref (renamed from dbRef), and set functions
+export { app, writeUserData, readUserData, checkLink };
