@@ -27,5 +27,6 @@ jobs:
       - name: Push Docker image to ghcr.io
         run: |
           docker login --username gautampatil1 --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --tag ghcr.io/gautampatil1/rezume:latest
-          docker push ghcr.io/gautampatil1/rezume-server:latest
+          docker tag gautampatil1/rezume:latest ghcr.io/gautampatil1/rezume:latest
+          docker push ghcr.io/gautampatil1/rezume:latest
+      
