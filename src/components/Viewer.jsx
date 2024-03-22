@@ -30,7 +30,7 @@ export default function Viewer() {
   return (
     <div className={styles.container}>
       <div className={styles.pdf}>
-      <iframe src={userData.file} frameborder="0"></iframe>
+      <iframe src={decodeURI(userData.file)} frameborder="0"></iframe>
       </div>
     </div>
   );
