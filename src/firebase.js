@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, onValue } from "firebase/database";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -17,8 +16,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
 
 function checkLink(link) {
   const db = getDatabase();
@@ -67,5 +64,4 @@ async function readUserData(link) {
   });
 }
 
-
-export { app, writeUserData, readUserData, checkLink, signInWithPopup, provider, auth, GoogleAuthProvider };
+export { app, writeUserData, readUserData, checkLink };
