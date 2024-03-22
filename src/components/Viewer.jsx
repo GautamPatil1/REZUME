@@ -26,11 +26,15 @@ export default function Viewer() {
 
   // Encode the URL
   const fileUrl = encodeURI(userData.file);
+  console.log(fileUrl);
 
   return (
     <div className={styles.container}>
       <div className={styles.pdf}>
-      <iframe src={decodeURI(userData.file)} frameborder="0"></iframe>
+        <iframe
+          src={`https://docs.google.com/gview?url=${userData.file}&embedded=true`}
+        >
+          </iframe>
       </div>
     </div>
   );

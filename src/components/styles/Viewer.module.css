@@ -1,7 +1,6 @@
-.pdf iframe{
+.pdf embed, iframe, object{
     height: 100vh;
     width: 100%;
-    background-color: blue;
 }
 
 .container{
