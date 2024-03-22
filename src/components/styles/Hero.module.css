@@ -38,11 +38,23 @@
     padding: .5rem 1rem;
 }
 
+.getStarted:hover{
+    text-decoration: none;
+    background-color: black;
+    color:white;
+    transition: .1s ease-in-out;
+
+}
+
 .getStarted a{
     text-decoration: none;
+    color:black;
     font-weight: bolder;
-    color: black;
     font-size: 20px;
+}
+
+.getStarted a:hover{
+    color: white;
 }
 
 @media screen and (max-width: 768px){

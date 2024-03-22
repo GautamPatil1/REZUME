@@ -3,6 +3,7 @@ import styles from "./styles/Form.module.css";
 import { getStorage, ref, uploadBytes, getMetadata } from "firebase/storage";
 import { writeUserData, checkLink } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -59,8 +60,10 @@ const Form = () => {
   };
 
   return (
-    <div>
-      <h1>Form</h1>
+    <>
+    <Navbar />
+    <div class={styles.container}>
+      <h1>Upload your Details</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -70,22 +73,24 @@ const Form = () => {
             type="text"
             className="form-control"
             id="name"
+            placeholder="Gautam Patil"
             required
           />
         </div>
 
         <div className="mb-3">
           <label htmlFor="url" className="form-label">
-            Your specific URL
+            Unique URL for your Resume
           </label>
           <div className="input-group">
             <span className="input-group-text" id="basic-addon3">
-              https://rezume.link/
+              www.rezume.live/
             </span>
             <input
               type="text"
               className="form-control"
               id="url"
+              placeholder="gautampatil"
               required
             />
           </div>
@@ -107,11 +112,12 @@ const Form = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary" disabled={loading}>
+        <button type="submit" className={styles.btn}disabled={loading}>
           {loading ? "Loading..." : "Submit"}
         </button>
       </form>
     </div>
+    </>
   );
 };
 

@@ -12,7 +12,6 @@ export default function Viewer() {
     async function fetchData() {
       try {
         const result = await readUserData(param);
-        console.log(result);
         setUserData(result);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -25,14 +24,16 @@ export default function Viewer() {
     return <div>Loading...</div>;
   }
 
+  // Encode the URL
+  const fileUrl = encodeURI(userData.file);
+
   return (
-    <div>
-      <h1>{userData.name}</h1>
+    <div className={styles.container}>
       <div className={styles.pdf}>
-        <iframe
-          className={styles.pdf}
-          src={userData.file}
-        />
+        <object
+          data={userData.file}
+          frameborder="0"
+        ></object>
       </div>
     </div>
   );

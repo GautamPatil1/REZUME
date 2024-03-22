@@ -34,10 +34,17 @@
 }
 
 .right .auth .login {
+  cursor: pointer;
   border: 1px solid white;
   border-radius: 0.5rem;
   padding: .75rem;
   font-size: 18px;
+}
+
+.right .auth .login:hover {
+  background-color: white;
+  color: black;
+  transition: .2s ease-in-out;
 }
 
 @media screen and (max-width: 768px){

@@ -2,8 +2,33 @@
     color:white;
 }
 
+.container{
+    margin-top: 2rem;
+}
+
+h1{
+    text-align: center;
+}
+
 .form{
     margin: 5rem 35rem;
+}
+
+
+.btn{
+    padding: 0 1.5rem;
+    width: 100%;
+    background-color: rgb(28, 97, 226);
+    border: 1px solid white;
+    border-radius: .5rem;
+    height: 2.25rem;
+
+}
+
+.btn:hover{
+    background-color: white;
+    color: black;
+    transition: .2s ease-in-out;
 }
 
 @media screen and (max-width: 768px){
