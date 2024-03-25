@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./styles/Viewer.module.css";
 import { readUserData } from "../firebase";
+import Navbar from "./Navbar";
 
 export default function Viewer() {
   const { param } = useParams();
@@ -30,12 +31,11 @@ export default function Viewer() {
 
   return (
     <div className={styles.container}>
+      <Navbar />
       <div className={styles.pdf}>
-        <iframe src={`https://docs.google.com/viewerng/viewer?url=`+fileUrl} frameborder="0"></iframe>
-        {/* <iframe
+        <iframe
           src={`https://docs.google.com/gview?url=${userData.file}&embedded=true`}
-        >
-        </iframe> */}
+        ></iframe>
       </div>
     </div>
   );

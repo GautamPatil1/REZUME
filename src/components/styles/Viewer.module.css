@@ -1,6 +1,12 @@
 .pdf embed, iframe, object{
-    height: 100vh;
+    height: 140vh;
     width: 100%;
+}
+*, body{
+    background-color: black;
+}
+.react-pdf_Page_Canvas{
+    background-color: black;
 }
 
 .container{
@@ -10,3 +16,9 @@
     width: 100%;
 }
 
+@media screen and (max-width: 768px){
+    .pdf embed, iframe, object{
+        height: 60vh;   
+    }
+    
+}
