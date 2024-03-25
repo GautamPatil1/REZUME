@@ -31,10 +31,11 @@ export default function Viewer() {
   return (
     <div className={styles.container}>
       <div className={styles.pdf}>
-        <iframe
+        <iframe src={`https://docs.google.com/viewerng/viewer?url=`+fileUrl} frameborder="0"></iframe>
+        {/* <iframe
           src={`https://docs.google.com/gview?url=${userData.file}&embedded=true`}
         >
-          </iframe>
+        </iframe> */}
       </div>
     </div>
   );

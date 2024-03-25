@@ -1,0 +1,27 @@
+.browser{
+    min-width: 40%;
+}
+
+h1{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.features{
+    margin: 10rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.feature{
+    margin: 2rem;
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 768px){
+    .features{
+        flex-direction: column-reverse;
+        margin: 0;
+    }
+    
+}

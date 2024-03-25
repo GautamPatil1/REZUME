@@ -4,7 +4,7 @@ export default function Hero() {
     <div className={styles.heroContainer}>
       <div className={styles.left}>
         <div className={styles.title}>
-          Your Personalized <br /> Resume Hosting Platf orm
+          Your Personalized <br /> Resume Hosting Platform
         </div>
         <div className={styles.subtitle}>
           Create your own personalized resume website in minutes & host it on a personalized username of your choice.
