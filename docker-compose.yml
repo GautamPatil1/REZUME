@@ -5,3 +5,5 @@ services:
     image: gautampatil1/rezume:latest
     ports:
       - "3000:80"
+    env_file:
+      .env

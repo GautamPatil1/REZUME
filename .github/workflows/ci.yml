@@ -8,16 +8,6 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    env:
-      WDS_SOCKET_PORT: 0
-      REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
-      REACT_APP_FIREBASE_AUTH_DOMAIN: rezume-a5269.firebaseapp.com
-      REACT_APP_FIREBASE_PROJECT_ID: rezume-a5269
-      REACT_APP_FIREBASE_STORAGE_BUCKET: gs://rezume-a5269.appspot.com
-      REACT_APP_FIREBASE_MESSAGING_SENDER_ID: 60826985488
-      REACT_APP_FIREBASE_APP_ID: 1:60826985488:web:2637058eb25c03f5d39695
-      REACT_APP_FIREBASE_MEASUREMENT_ID: G-RVFTFZWE97
-      REACT_APP_FIREBASE_DATABASE_URL: https://rezume-a5269-default-rtdb.asia-southeast1.firebasedatabase.app/
 
     steps:
       - name: Checkout code
@@ -31,16 +21,19 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t gautampatil1/rezume:latest \
-            --build-arg REACT_APP_FIREBASE_API_KEY \
-            --build-arg REACT_APP_FIREBASE_AUTH_DOMAIN \
-            --build-arg REACT_APP_FIREBASE_PROJECT_ID \
-            --build-arg REACT_APP_FIREBASE_STORAGE_BUCKET \
-            --build-arg REACT_APP_FIREBASE_MESSAGING_SENDER_ID \
-            --build-arg REACT_APP_FIREBASE_APP_ID \
-            --build-arg REACT_APP_FIREBASE_MEASUREMENT_ID \
-            --build-arg REACT_APP_FIREBASE_DATABASE_URL \
+          docker build \
+            --build-arg WDS_SOCKET_PORT=0 \
+            --build-arg REACT_APP_FIREBASE_API_KEY=${{ secrets.REACT_APP_FIREBASE_API_KEY }} \
+            --build-arg REACT_APP_FIREBASE_AUTH_DOMAIN=rezume-a5269.firebaseapp.com \
+            --build-arg REACT_APP_FIREBASE_PROJECT_ID=rezume-a5269 \
+            --build-arg REACT_APP_FIREBASE_STORAGE_BUCKET=gs://rezume-a5269.appspot.com \
+            --build-arg REACT_APP_FIREBASE_MESSAGING_SENDER_ID=60826985488 \
+            --build-arg REACT_APP_FIREBASE_APP_ID=1:60826985488:web:2637058eb25c03f5d39695 \
+            --build-arg REACT_APP_FIREBASE_MEASUREMENT_ID=G-RVFTFZWE97 \
+            --build-arg REACT_APP_FIREBASE_DATABASE_URL=https://rezume-a5269-default-rtdb.asia-southeast1.firebasedatabase.app/ \
+            -t gautampatil1/rezume:latest \
             .
+
 
       - name: Push Docker image to Docker Hub
         run: docker push gautampatil1/rezume:latest
