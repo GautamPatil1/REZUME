@@ -2,8 +2,6 @@ version: '3.8'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: gautampatil1/rezume:latest
     ports:
       - "3000:80"
