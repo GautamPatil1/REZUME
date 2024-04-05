@@ -48,6 +48,7 @@
 
 .getStarted a{
     text-decoration: none;
+    background-color: white;
     color:black;
     font-weight: bolder;
     font-size: 20px;
