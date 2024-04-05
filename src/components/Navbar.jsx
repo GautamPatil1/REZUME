@@ -26,7 +26,7 @@ export default function Navbar() {
       </div>
 
       <div className={styles.right}>
-        <div className={styles.howItWorks}>How it works</div>
+        <div className={styles.howItWorks}>Features</div>
 
         <div className={styles.auth}>
           <div className={styles.login}>Start Rezume</div>
