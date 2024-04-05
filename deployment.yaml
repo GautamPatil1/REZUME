@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rezume
+  labels:
+    app: rezume
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rezume
+  template:
+    metadata:
+      labels:
+        app: rezume
+    spec:
+      containers:
+      - name: rezume
+        image: gautampatil1/rezume:latest
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rezume-service
+spec:
+  selector:
+    app: rezume
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 32600
+  type: NodePort
