@@ -22,6 +22,10 @@
   color: white;
   font-size: 1.5rem; /* Example font size */
 }
+.name a{
+  text-decoration: none;
+  color:white;
+}
 
 .right {
   display: flex;
