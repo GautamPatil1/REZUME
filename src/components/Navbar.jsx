@@ -19,7 +19,7 @@ export default function Navbar() {
           />
         </div>
         <div className={styles.name}>
-          REZUME
+          <a href="/">REZUME</a>
         </div>
       </div>
 
