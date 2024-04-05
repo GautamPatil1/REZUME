@@ -31,7 +31,7 @@ jobs:
           docker push ghcr.io/gautampatil1/rezume:latest
       
       - name: Deploy to K8s
-        uses: actions-hub/kubectl@master
+        uses: actions-hub/kubectl@v1.28.3
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
