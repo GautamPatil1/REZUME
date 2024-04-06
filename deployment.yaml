@@ -17,6 +17,7 @@ spec:
       containers:
       - name: rezume
         image: gautampatil1/rezume:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 
