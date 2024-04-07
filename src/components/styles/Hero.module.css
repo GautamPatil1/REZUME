@@ -41,7 +41,6 @@
 .getStarted:hover{
     text-decoration: none;
     background-color: black;
-    color:white;
     transition: .1s ease-in-out;
 
 }
