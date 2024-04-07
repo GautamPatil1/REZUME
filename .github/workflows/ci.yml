@@ -30,11 +30,10 @@ jobs:
           docker tag gautampatil1/rezume:latest ghcr.io/gautampatil1/rezume:latest
           docker push ghcr.io/gautampatil1/rezume:latest
       
-      - name: cluster restart
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          script: |
-            minikube start --driver=docker
+      - name: SSH into instance and restart Minikube
+        run: |
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_rsa
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} "minikube start --driver=docker"
+        env:
+          SSH_AUTH_SOCK: /dev/null
