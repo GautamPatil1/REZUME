@@ -29,7 +29,7 @@ export default function Navbar() {
         <div className={styles.howItWorks}>Features</div>
 
         <div className={styles.auth}>
-          <div className={styles.login}>Ayyo Rezume</div>
+          <div className={styles.login}>Start Rezume</div>
         </div>
       </div>
     </div>

@@ -30,9 +30,12 @@ jobs:
           docker tag gautampatil1/rezume:latest ghcr.io/gautampatil1/rezume:latest
           docker push ghcr.io/gautampatil1/rezume:latest
       
-      # - name: Deploy to K8s
-      #   uses: actions-hub/kubectl@v1.28.3
-      #   env:
-      #     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-      #   with:
-      #     args: apply -f deployment.yaml
+      - name: cluster restart
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            minikube start --driver=docker

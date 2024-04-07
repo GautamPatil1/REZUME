@@ -11,6 +11,8 @@
 
 # testing
 /coverage
+minikube
+minikube.pub
 
 # production
 /build
