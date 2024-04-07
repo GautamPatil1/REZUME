@@ -36,6 +36,5 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          password: ${{ secrets.PASSWORD }}
           script: |
             minikube start --driver=docker
