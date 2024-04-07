@@ -40,7 +40,6 @@
 
 .getStarted:hover{
     text-decoration: none;
-    background-color: black;
     transition: .1s ease-in-out;
 
 }
