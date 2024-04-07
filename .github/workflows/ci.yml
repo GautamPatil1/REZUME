@@ -32,8 +32,11 @@ jobs:
       
       - name: SSH into instance and restart Minikube
         run: |
+          mkdir -p ~/.ssh  # Create .ssh directory if it doesn't exist
+          touch ~/.ssh/known_hosts  # Create known_hosts file if it doesn't exist
           ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
           chmod 600 ~/.ssh/id_rsa
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} "minikube start --driver=docker"
         env:
           SSH_AUTH_SOCK: /dev/null
+        
