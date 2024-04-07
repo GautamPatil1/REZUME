@@ -30,13 +30,11 @@ jobs:
           docker tag gautampatil1/rezume:latest ghcr.io/gautampatil1/rezume:latest
           docker push ghcr.io/gautampatil1/rezume:latest
       
-      - name: SSH into instance and restart Minikube
-        run: |
-          mkdir -p ~/.ssh  # Create .ssh directory if it doesn't exist
-          touch ~/.ssh/known_hosts  # Create known_hosts file if it doesn't exist
-          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/id_rsa
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} "minikube start --driver=docker"
-        env:
-          SSH_AUTH_SOCK: /dev/null
-        
+      - name: cluster restart
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            minikube start --driver=docker
