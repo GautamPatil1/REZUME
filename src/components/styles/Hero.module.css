@@ -53,7 +53,9 @@
 }
 
 .getStarted a:hover{
-    color: black;
+    color: white;
+    background-color: black;
+    border: 1px solid white;
 }
 
 @media screen and (max-width: 768px){
